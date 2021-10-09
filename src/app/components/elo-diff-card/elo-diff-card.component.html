@@ -1,0 +1,25 @@
+<mat-card class="transparent mat-elevation-z8 mx-2">
+    <div class="d-flex justify-content-center align-items-center" style="padding-top: 7px; padding-bottom: 7px;">
+        <h1 style="margin-bottom: 0; margin-left: 5px; color: lightgray; font-family: 'Nunito';">ELO {{getLabel}}</h1>
+        <mat-icon [ngClass]="{
+            'font-green': eloDiff.eloDiff > 0,
+            'font-red': eloDiff.eloDiff < 0,
+            'font-neutral': eloDiff.eloDiff === 0
+          }" style="margin-bottom: 0; margin-left: 5px;" *ngIf="eloDiff.eloDiff > 0">trending_up</mat-icon>
+        <mat-icon [ngClass]="{
+            'font-green': eloDiff.eloDiff > 0,
+            'font-red': eloDiff.eloDiff < 0,
+            'font-neutral': eloDiff.eloDiff === 0
+          }" style="margin-bottom: 0; margin-left: 5px;" *ngIf="eloDiff.eloDiff === 0">trending_flat</mat-icon>
+        <mat-icon [ngClass]="{
+            'font-green': eloDiff.eloDiff > 0,
+            'font-red': eloDiff.eloDiff < 0,
+            'font-neutral': eloDiff.eloDiff === 0
+          }" style="margin-bottom: 0; margin-left: 5px;" *ngIf="eloDiff.eloDiff < 0">trending_down</mat-icon>
+        <h1 style="font-family: 'Nunito';" [ngClass]="{
+            'font-green': eloDiff.eloDiff > 0,
+            'font-red': eloDiff.eloDiff < 0,
+            'font-neutral': eloDiff.eloDiff === 0
+          }" style="margin-bottom: 0; margin-left: 3px;">{{ eloDiff.eloDiff }}</h1>
+    </div>
+</mat-card>

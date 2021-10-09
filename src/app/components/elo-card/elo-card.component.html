@@ -1,0 +1,7 @@
+<mat-card class="transparent mat-elevation-z8 mx-2" style="margin-bottom: 7px;">
+    <div class="d-flex justify-content-center align-items-center">
+        <svg-icon *ngIf="csStats.skill_level_label" [src]="levelIcon"
+            [svgStyle]="{'width.px':40,'fill':'rgb(150,50,255)','padding.px':1,'margin.px':3}">></svg-icon>
+        <h1 style="margin-bottom: 0; margin-left: 5px; color: lightgray; font-family: 'Nunito';">{{csStats.faceit_elo}} ELO</h1>
+    </div>
+</mat-card>
