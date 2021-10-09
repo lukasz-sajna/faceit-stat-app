@@ -4,13 +4,12 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map, switchMap, withLatestFrom } from 'rxjs/operators';
 import { FaceitApiService } from 'src/app/services/faceit-api.service';
-import { LocalApiService } from 'src/app/services/local-api.service';
 import { getBasicStats, getBasicStatsSuccceeded, getEloDiff, getEloDiffSucceeded, getPlayerDetails, getPlayerDetailsSucceeded, getPlayerMatches, getPlayerMatchesSucceeded, getPlayerStats, getPlayerStatsSucceeded } from '../actions/stats.actions';
 import { selectQueryParamsSelector } from '../selectors/global-state.selectors';
 
 @Injectable()
 export class StatsEffects {
-    constructor(private actions$: Actions, private faceitApi: FaceitApiService, private localApi: LocalApiService, private store: Store<any>) { }
+    constructor(private actions$: Actions, private faceitApi: FaceitApiService, private store: Store<any>) { }
 
     public getPlayerDetails$: Observable<any> = createEffect(() =>
         this.actions$.pipe(
@@ -47,16 +46,6 @@ export class StatsEffects {
             withLatestFrom(this.store.select(selectQueryParamsSelector)),
             switchMap(([action, queryParams]) => this.faceitApi.GetPlayerMatchHistory(action.playerId, queryParams.period).pipe(
                 map((response) => getPlayerMatchesSucceeded({ matches: response }))
-            ))
-        )
-    );
-
-    public getEloDiff$: Observable<any> = createEffect(() =>
-        this.actions$.pipe(
-            ofType(getEloDiff),
-            withLatestFrom(this.store.select(selectQueryParamsSelector)),
-            switchMap(([_, queryParams]) => this.localApi.GetEloDiffForPeriod(queryParams.period).pipe(
-                map((response) => getEloDiffSucceeded({ eloDiff: response }))
             ))
         )
     );

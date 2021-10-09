@@ -47,7 +47,7 @@ export class FaceitApiService {
   }
 
   public GetBasicInfo(nickname: string): Observable<FaceitResponse> {
-    return this.http.get<FaceitResponse>(`${this.basicApiUrl}/faceit?nick=${nickname}&game=csgo`);
+    return this.http.get<FaceitResponse>(`${this.basicApiUrl}/Stats/GetStats?nickname=${nickname}`);
   }
 
   private getMonday(today: Date): Date {

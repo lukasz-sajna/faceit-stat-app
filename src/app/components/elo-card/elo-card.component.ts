@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Csgo } from 'src/app/models/cs-go';
+import { Elo } from 'src/app/models/elo';
 
 @Component({
   selector: 'app-elo-card',
@@ -9,9 +10,9 @@ import { Csgo } from 'src/app/models/cs-go';
 })
 export class EloCardComponent {
   @Input()
-  public csStats: Csgo = {} as Csgo;
+  public elo: Elo = {} as Elo;
 
   public get levelIcon(): string {
-    return `/assets/faceit${String(this.csStats.skill_level ? this.csStats.skill_level : 1)}.svg`
+    return `/assets/faceit${String(this.elo.level ? this.elo.level : 1)}.svg`
   }
 }

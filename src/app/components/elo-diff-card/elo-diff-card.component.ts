@@ -1,32 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Period } from 'src/app/enums/period.enum';
-import { EloDiff } from 'src/app/models/elo-diff';
+import { Component, Input } from '@angular/core';
+import { Elo } from 'src/app/models/elo';
 
 @Component({
   selector: 'app-elo-diff-card',
   templateUrl: './elo-diff-card.component.html',
   styleUrls: ['./elo-diff-card.component.scss']
 })
-export class EloDiffCardComponent implements OnInit {
-  @Input() public eloDiff: EloDiff = { } as EloDiff
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-  public get getLabel(): string {
-    switch (this.eloDiff.period) {
-      case Period.Daily:
-        return ' DZIŚ'
-      case Period.Weekly:
-        return ' w tym tygodniu'
-      case Period.Monthly:
-        return ' w tym miesiącu'
-      default:
-        return String();
-    }
-  }
+export class EloDiffCardComponent {
+  @Input() public eloDiff: Elo = {} as Elo
 
   public get fontColor(): string {
     return this.eloDiff.eloDiff > 0 ? './font-green' : this.eloDiff.eloDiff < 0 ? './font-red' : './font-neutral'

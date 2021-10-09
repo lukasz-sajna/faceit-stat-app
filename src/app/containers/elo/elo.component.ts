@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Csgo } from 'src/app/models/cs-go';
-import { selectCsGoDetailsSelector } from 'src/app/store/selectors/stats.selector';
+import { Elo } from 'src/app/models/elo';
+import { selectBasicDataSelector } from 'src/app/store/selectors/stats.selector';
 
 @Component({
   selector: 'app-elo',
@@ -11,10 +11,10 @@ import { selectCsGoDetailsSelector } from 'src/app/store/selectors/stats.selecto
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EloComponent {
-  public csGoDetails$: Observable<Csgo>;
+  public csGoDetails$: Observable<Elo>;
 
   constructor(private store: Store<any>) {
-    this.csGoDetails$ = this.store.select(selectCsGoDetailsSelector);
+    this.csGoDetails$ = this.store.select(selectBasicDataSelector);
   }
 
 }

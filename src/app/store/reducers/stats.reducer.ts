@@ -13,7 +13,7 @@ const intitialState: StatsState = {
   playerDetails: {} as PlayerDetails,
   playerMatches: {} as PlayerMatches,
   playerStatsPerGame: {} as PlayerStatsPerGame,
-  basic: { stats: {}, latestMatches: []} as FaceitResponse
+  basic: { elo: 0, lvl: 1, todayEloDiff: "0", stats: {}, latestMatches: [] } as FaceitResponse
 };
 
 export const reducer = createReducer(
