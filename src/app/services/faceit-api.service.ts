@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import * as moment from 'moment';
 import { Observable } from 'rxjs';
 import { Period } from '../enums/period.enum';
 import { API_URL, BASIC_API_URL } from '../injection-tokens';

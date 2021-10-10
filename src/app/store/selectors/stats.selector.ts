@@ -44,7 +44,7 @@ export const selectEloDiffSelector = createSelector(
 export const selectBasicDataSelector = createSelector(
     statsFeatureState,
     (stats) => {
-        return {level: stats.basic.lvl, elo: stats.basic.elo, eloDiff: Number(stats.basic.todayEloDiff.replace(/[^0-9]/g, ''))} as Elo;
+        return {level: stats.basic.lvl, elo: stats.basic.elo, eloDiff: Number(stats.basic.todayEloDiff.replace(/^[+]/g, ''))} as Elo;
     }
 );
 
