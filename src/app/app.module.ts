@@ -72,7 +72,7 @@ import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     EffectsModule.forRoot([StatsEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     StoreRouterConnectingModule.forRoot({ routerState: RouterState.Minimal }),
-    NgbModule
+    NgbModule,
   ],
   providers: [
     {provide: API_URL, useValue: environment.apiUrl},
