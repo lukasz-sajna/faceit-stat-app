@@ -49,6 +49,10 @@ export class FaceitApiService {
     return this.http.get<FaceitResponse>(`${this.basicApiUrl}/Stats/GetStats?nickname=${nickname}`);
   }
 
+  public GetEsea(): Observable<any> {
+    return this.http.get<any>('https://play.esea.net/api/teams/8763504');
+  }
+
   private getMonday(today: Date): Date {
     today = new Date(today);
     let day = today.getDay(),

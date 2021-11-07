@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { map, switchMap, withLatestFrom } from 'rxjs/operators';
+import { map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { FaceitApiService } from 'src/app/services/faceit-api.service';
 import { getBasicStats, getBasicStatsSuccceeded, getEloDiff, getEloDiffSucceeded, getPlayerDetails, getPlayerDetailsSucceeded, getPlayerMatches, getPlayerMatchesSucceeded, getPlayerStats, getPlayerStatsSucceeded } from '../actions/stats.actions';
 import { selectQueryParamsSelector } from '../selectors/global-state.selectors';
@@ -58,4 +58,13 @@ export class StatsEffects {
             ))
         )
     );
+
+    // public getBasicStatsSuccceeded$: Observable<any> = createEffect(() =>
+    //     this.actions$.pipe(
+    //         ofType(getBasicStatsSuccceeded),
+    //         switchMap(() => this.faceitApi.GetEsea().pipe(
+    //             tap((response) => console.log(response))
+    //         ))
+    //     ), {dispatch: false}
+    // );
 }

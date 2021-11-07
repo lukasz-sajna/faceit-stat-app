@@ -5,7 +5,7 @@ import { timer } from 'rxjs';
 import { switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { Widget } from 'src/app/enums/widget.enum';
 import { QueryParams } from 'src/app/models/query-params';
-import { getBasicStats, getPlayerDetails } from 'src/app/store/actions/stats.actions';
+import { getBasicStats } from 'src/app/store/actions/stats.actions';
 import { selectMappedQueryParamsSelector, selectRouteParamsSelector } from 'src/app/store/selectors/global-state.selectors';
 
 @UntilDestroy()

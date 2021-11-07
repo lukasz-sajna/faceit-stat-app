@@ -29,6 +29,9 @@ import { ResultPipe } from './pipes/result.pipe';
 import { StatsEffects } from './store/effects/stats.effects';
 import { metaReducers, reducers } from './store/reducers/combine-reducers';
 import { statsFeatureKey, statsReducer } from './store/reducers/stats.reducer';
+import { EloCarouselCardComponent } from './components/elo-carousel-card/elo-carousel-card.component';
+import { EloCarouselComponent } from './containers/elo-carousel/elo-carousel.component';
+import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -44,7 +47,9 @@ import { statsFeatureKey, statsReducer } from './store/reducers/stats.reducer';
     LastResultsCardComponent,
     ResultPipe,
     BalanceCardComponent,
-    EloDiffCardComponent
+    EloDiffCardComponent,
+    EloCarouselCardComponent,
+    EloCarouselComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +59,7 @@ import { statsFeatureKey, statsReducer } from './store/reducers/stats.reducer';
     MatCardModule,
     MatIconModule,
     HttpClientModule,
+    NgbCarouselModule,
     AngularSvgIconModule.forRoot(),
     StoreModule.forRoot(reducers, {
       metaReducers,
@@ -65,7 +71,8 @@ import { statsFeatureKey, statsReducer } from './store/reducers/stats.reducer';
     StoreModule.forFeature(statsFeatureKey, statsReducer),
     EffectsModule.forRoot([StatsEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    StoreRouterConnectingModule.forRoot({ routerState: RouterState.Minimal })
+    StoreRouterConnectingModule.forRoot({ routerState: RouterState.Minimal }),
+    NgbModule
   ],
   providers: [
     {provide: API_URL, useValue: environment.apiUrl},

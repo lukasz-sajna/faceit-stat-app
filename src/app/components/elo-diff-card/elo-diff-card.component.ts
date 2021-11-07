@@ -10,7 +10,15 @@ export class EloDiffCardComponent {
   @Input() public eloDiff: Elo = {} as Elo
 
   public get fontColor(): string {
-    return this.eloDiff.eloDiff > 0 ? './font-green' : this.eloDiff.eloDiff < 0 ? './font-red' : './font-neutral'
+    return this.eloDiffNumber > 0 ? 'font-green' : this.eloDiffNumber < 0 ? 'font-red' : 'font-neutral'
+  }
+
+  public get eloDiffNumber(): Number {
+    if(!isNaN(this.eloDiff.eloDiff)){
+      return Number(this.eloDiff.eloDiff);
+    }
+
+    return 0;
   }
 
 }
