@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SignalRService } from './services/signal-r.service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,9 @@ export class AppComponent  {
 
   title = 'faceit-stats';
 
-  constructor() {
-
+  constructor(private signalRService: SignalRService) {
+    this.signalRService.buildConnection();
+    this.signalRService.startConnection();
   }
 }
 
