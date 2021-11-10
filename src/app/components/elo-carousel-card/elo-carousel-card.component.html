@@ -9,14 +9,14 @@
         [interval]="10000"
     >
         <ng-template ngbSlide>
-            <div class="d-flex justify-content-center align-items-center">
-                <svg-icon *ngIf="elo.level" [src]="levelIcon"
-                    [svgStyle]="{'width.px':40,'fill':'rgb(150,50,255)','padding.px':1,'margin.px':3}">></svg-icon>
+            <div class="d-flex justify-content-center align-items-center text-shadow">
+                <svg-icon *ngIf="elo.level"  [src]="levelIcon" [applyClass]="true"
+                    [svgStyle]="{'width.px':40,'fill':'rgb(150,50,255)','padding.px':1,'margin.px':3 }">></svg-icon>
                 <h1 style="margin-bottom: 0; margin-left: 5px; color: lightgray; font-family: 'Nunito';">{{elo.elo}} ELO</h1>
             </div>
         </ng-template>
         <ng-template ngbSlide>
-            <div class="d-flex justify-content-center align-items-center" style="padding-top: 7px; padding-bottom: 7px;">
+            <div class="d-flex justify-content-center align-items-center text-shadow" style="padding-top: 7px; padding-bottom: 7px;">
                 <h1 style="margin-bottom: 0; margin-left: 5px; color: lightgray; font-family: 'Nunito';">ELO DZIŚ</h1>
                 <mat-icon  [ngClass]="fontColor" style="margin-bottom: 0; margin-left: 5px;" *ngIf="eloDiffNumber > 0">trending_up</mat-icon>
                 <mat-icon  [ngClass]="fontColor" style="margin-bottom: 0; margin-left: 5px;" *ngIf="eloDiffNumber === 0">trending_flat</mat-icon>
