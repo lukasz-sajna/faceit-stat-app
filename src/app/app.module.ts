@@ -21,7 +21,7 @@ import { BalanceComponent } from './containers/balance/balance.component';
 import { EloDiffComponent } from './containers/elo-diff/elo-diff.component';
 import { EloComponent } from './containers/elo/elo.component';
 import { LastResultsComponent } from './containers/last-results/last-results.component';
-import { API_KEY, API_URL, BASIC_API_URL, LOCAL_API_URL } from './injection-tokens';
+import { API_KEY, API_URL, BASIC_API_URL, FACEIT_STATS_HUB, LOCAL_API_URL } from './injection-tokens';
 import { AuthHeaderInterceptor } from './interceptors/auth-header.interceptor';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { WidgetComponent } from './pages/widget/widget.component';
@@ -79,6 +79,7 @@ import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     {provide: LOCAL_API_URL, useValue: environment.localApiUrl},
     {provide: API_KEY, useValue: environment.apiKey},
     {provide: BASIC_API_URL, useValue: environment.basicApiUrl},
+    {provide: FACEIT_STATS_HUB, useValue: environment.faceitStatsHub},
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthHeaderInterceptor,
