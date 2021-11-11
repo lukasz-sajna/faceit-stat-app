@@ -1,6 +1,5 @@
 import { Headshots } from './headshots';
 
-
 export interface LatestMatch {
     team: string;
     teamScore: string;
@@ -11,4 +10,6 @@ export interface LatestMatch {
     kills: string;
     death: string;
     result: string;
+    createdAt: Date;
+    updatedAt: Date;
 }

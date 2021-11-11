@@ -1,25 +1,27 @@
-import { AfterViewInit, Component, ElementRef, Input, Renderer2, ViewChildren } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Elo } from 'src/app/models/elo';
+import { LatestMatchesTrend } from 'src/app/models/latest-matches-trend';
 
 @Component({
   selector: 'app-elo-carousel-card',
   templateUrl: './elo-carousel-card.component.html',
   styleUrls: ['./elo-carousel-card.component.scss']
 })
-export class EloCarouselCardComponent implements AfterViewInit{
+export class EloCarouselCardComponent{
   @Input()
   public elo: Elo = {} as Elo;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-    
-  }
+  @Input() public lastResults: LatestMatchesTrend = {} as LatestMatchesTrend;
 
-  public ngAfterViewInit(): void  {
-    const btnElement = (<HTMLElement>this.el.nativeElement)
-      .querySelectorAll('.sr-only');
+  public get convertedResults(): {result: string; elo: string}[]{
+    const splitterResults = !!this.lastResults && !!this.lastResults.extended ? this.lastResults.extended.split('|'): [] as String[];
+    splitterResults.forEach((_, index) => {
+      splitterResults[index] = splitterResults[index].trim();
+    });
 
-    btnElement.forEach(x => {
-      x.remove()
+    return splitterResults.map(result => {
+      const splitedResult = result.split(' ');
+      return {result: splitedResult[0], elo: splitedResult[1]}
     });
   }
 

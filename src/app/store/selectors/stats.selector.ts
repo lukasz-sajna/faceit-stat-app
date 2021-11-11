@@ -23,7 +23,7 @@ export const selectPlayerIdSelector = createSelector(
 export const selectLastResultsSelector = createSelector(
     statsFeatureState,
     (stats) => {
-        return stats.playerStatsPerGame.lifetime ? stats.playerStatsPerGame.lifetime['Recent Results'] : [] as String[];
+        return stats.basic.latestMatchesTrend;
     }
 );
 

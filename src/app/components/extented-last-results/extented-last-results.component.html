@@ -1,0 +1,10 @@
+<mat-card class="transparent shadow mx-2">
+    <div class="d-flex justify-content-center align-items-center text-shadow-2">
+        <h2 *ngFor="let convertedResult of convertedResults; let i = index" style="margin-bottom: 0; margin-left: 5px;"
+            [ngClass]="{'font-green': convertedResult.result.includes('W'),'font-red': convertedResult.result.includes('L')}">
+             {{ convertedResult.result }} {{ !convertedResult.elo.includes('NaN') ? convertedResult.elo : '' }}
+             <mat-icon *ngIf="convertedResult.elo.includes('NaN')" style="margin-bottom: 4px; margin-left: 5px;">repeat</mat-icon>
+             <span *ngIf="i+1 !== convertedResults.length" style="color: lightgray; margin-bottom: 7px;"> | </span>
+        </h2>
+    </div>
+</mat-card>

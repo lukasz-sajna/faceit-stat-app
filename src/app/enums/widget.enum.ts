@@ -3,5 +3,6 @@ export enum Widget {
     Balance = 'balance',
     EloDiff = 'elo-diff',
     LastResults = 'last-results',
-    EloCarousel = 'elo-carousel'
+    EloCarousel = 'elo-carousel',
+    ExtendedLastResults = 'extendewd-last-results',
 }

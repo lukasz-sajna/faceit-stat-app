@@ -1,9 +1,9 @@
-<mat-card class="transparent mat-elevation-z8 mx-2">
-    <div class="d-flex justify-content-center align-items-center">
+<mat-card class="transparent shadow mx-2">
+    <div class="d-flex justify-content-center align-items-center text-shadow">
         <h1 style="margin-bottom: 0; margin-left: 5px; color: lightgray;">Ostatnie wyniki:</h1>
-        <h1 *ngFor="let result of lastResults" style="margin-bottom: 0; margin-left: 5px;"
-            [ngClass]="{'font-green': result === '1','font-red': result === '0'}">
-            {{result | result}}
+        <h1 *ngFor="let result of resultTrend" style="margin-bottom: 0; margin-left: 5px;"
+            [ngClass]="{'font-green': result === 'W','font-red': result === 'L'}">
+            {{result }}
         </h1>
     </div>
 </mat-card>

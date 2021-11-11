@@ -32,6 +32,7 @@ import { statsFeatureKey, statsReducer } from './store/reducers/stats.reducer';
 import { EloCarouselCardComponent } from './components/elo-carousel-card/elo-carousel-card.component';
 import { EloCarouselComponent } from './containers/elo-carousel/elo-carousel.component';
 import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ExtentedLastResultsComponent } from './components/extented-last-results/extented-last-results.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BalanceCardComponent,
     EloDiffCardComponent,
     EloCarouselCardComponent,
-    EloCarouselComponent
+    EloCarouselComponent,
+    ExtentedLastResultsComponent
   ],
   imports: [
     BrowserModule,

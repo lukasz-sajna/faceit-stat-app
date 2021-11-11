@@ -1,3 +1,4 @@
+import { isNumber } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { Action, createReducer, on } from '@ngrx/store';
 import { FaceitResponse } from 'src/app/models/faceit-response';
 import { PlayerDetails } from 'src/app/models/player-details';
@@ -13,7 +14,7 @@ const intitialState: StatsState = {
   playerDetails: {} as PlayerDetails,
   playerMatches: {} as PlayerMatches,
   playerStatsPerGame: {} as PlayerStatsPerGame,
-  basic: { elo: 0, lvl: 1, todayEloDiff: "0", stats: {}, latestMatches: [] } as FaceitResponse
+  basic: { elo: 0, lvl: 1, todayEloDiff: "0", stats: {}, latestMatches: [], latestMatchesTrend: { simple: String(), extended: String()} } as FaceitResponse
 };
 
 export const reducer = createReducer(
@@ -36,7 +37,14 @@ export const reducer = createReducer(
   })),
   on(getBasicStatsSuccceeded, (state, action) => ({
     ...state,
-    basic: action.response
+    basic: {
+        elo: action.response.elo,
+        lvl: action.response.lvl,
+        todayEloDiff: !action.response.todayEloDiff.includes('NaN') ? action.response.todayEloDiff : state.basic.todayEloDiff,
+        stats: action.response.stats,
+        latestMatches: action.response.latestMatches,
+        latestMatchesTrend: action.response.latestMatchesTrend
+      }
   }))
 );
 

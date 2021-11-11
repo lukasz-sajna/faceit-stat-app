@@ -7,11 +7,11 @@
    }
 
 .font-green {
-    color: #5dbb29;
+    color: #32d35a;
 }
 
 .font-red {
-    color: #d64242;
+    color: #ff002b;
 }
 
 .font-neutral {
@@ -38,4 +38,14 @@
 
 svg {
   filter: drop-shadow(1px 2px 2px #575757);
+}
+
+.mat-icon {
+  vertical-align: middle;
+}
+
+.text-shadow-2{
+  text-shadow: 2px 2px 5px #000000; /* horizontal-offset vertical-offset 'blur' colour */
+  -moz-text-shadow: 2px 2px 5px #000000;
+  -webkit-text-shadow: 2px 2px 5px #000000;
 }

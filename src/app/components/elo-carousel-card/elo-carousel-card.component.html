@@ -1,4 +1,4 @@
-<mat-card class="transparent shadow mx-2" style="margin-bottom: 7px;">
+<mat-card class="transparent shadow mx-2" style="margin-bottom: 7px; min-height: 78px;">
     <ngb-carousel
         [animation]="true"
         [keyboard]="false"
@@ -7,6 +7,7 @@
         [showNavigationArrows]="false"
         [showNavigationIndicators]="false"
         [interval]="10000"
+        class="d-flex align-items-center"
     >
         <ng-template ngbSlide>
             <div class="d-flex justify-content-center align-items-center text-shadow">
@@ -22,6 +23,16 @@
                 <mat-icon  [ngClass]="fontColor" style="margin-bottom: 0; margin-left: 5px;" *ngIf="eloDiffNumber === 0">trending_flat</mat-icon>
                 <mat-icon  [ngClass]="fontColor" style="margin-bottom: 0; margin-left: 5px;" *ngIf="eloDiffNumber < 0">trending_down</mat-icon>
                 <h1 style="font-family: 'Nunito';" [ngClass]="fontColor" style="margin-bottom: 0; margin-left: 3px;">{{ eloDiffNumber }}</h1>
+            </div>
+        </ng-template>
+        <ng-template ngbSlide>
+            <div class="d-flex justify-content-center align-items-center text-shadow-2" style="padding-top: 7px; padding-bottom: 7px;">
+                <h1 *ngFor="let convertedResult of convertedResults; let i = index" style="margin-bottom: 0; margin-left: 5px; font-size: 1.2rem;"
+                    [ngClass]="{'font-green': convertedResult.result.includes('W'),'font-red': convertedResult.result.includes('L')}">
+                     {{ convertedResult.result }}{{ !convertedResult.elo.includes('NaN') ? ' ' + convertedResult.elo : '' }}
+                     <mat-icon *ngIf="convertedResult.elo.includes('NaN')" style="margin-bottom: 4px; margin-left: 5px;">repeat</mat-icon>
+                     <span *ngIf="i+1 !== convertedResults.length" style="color: lightgray; margin-bottom: 0;"> | </span>
+                </h1>
             </div>
         </ng-template>
       </ngb-carousel>

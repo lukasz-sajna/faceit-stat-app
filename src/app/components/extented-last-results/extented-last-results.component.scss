@@ -25,3 +25,13 @@
     -moz-text-shadow: 3px 3px 7px #000000;
     -webkit-text-shadow: 3px 3px 7px #000000;
   }
+
+  .text-shadow-2{
+    text-shadow: 2px 2px 5px #000000; /* horizontal-offset vertical-offset 'blur' colour */
+    -moz-text-shadow: 2px 2px 5px #000000;
+    -webkit-text-shadow: 2px 2px 5px #000000;
+  }
+
+  .mat-icon {
+    vertical-align: middle;
+}
