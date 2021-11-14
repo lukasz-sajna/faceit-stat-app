@@ -13,6 +13,8 @@ export const selectRouteParamsSelector = fromRouter.getSelectors(selectRouter).s
 export const selectMappedQueryParamsSelector = createSelector(
     selectQueryParamsSelector,
     (queryParams) => {
-        return { widget: queryParams.widget, period: queryParams.period, refreshRate: queryParams.refreshRate } as QueryParams
+        return !!queryParams
+            ? { widget: queryParams.widget, period: queryParams.period, refreshRate: queryParams.refreshRate } as QueryParams
+            : {} as QueryParams;
     }
 );
