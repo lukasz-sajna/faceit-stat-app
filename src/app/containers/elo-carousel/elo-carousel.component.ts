@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Elo } from 'src/app/models/elo';
-import { LatestMatchesTrend } from 'src/app/models/latest-matches-trend';
-import { selectBasicDataSelector, selectLastResultsSelector } from 'src/app/store/selectors/stats.selector';
+import { FaceItStatsResponse } from 'src/app/models/face-it-stats-response';
+import { selectFaceItDataSelector } from 'src/app/store/selectors/stats.selector';
 
 @Component({
   selector: 'app-elo-carousel',
@@ -11,12 +10,10 @@ import { selectBasicDataSelector, selectLastResultsSelector } from 'src/app/stor
   styleUrls: ['./elo-carousel.component.scss']
 })
 export class EloCarouselComponent{
-  public csGoDetails$: Observable<Elo>;
-  public lastResults$: Observable<LatestMatchesTrend>;
+  public faceItData$: Observable<FaceItStatsResponse>;
 
   constructor(private store: Store<any>) {
-    this.csGoDetails$ = this.store.select(selectBasicDataSelector);    
-    this.lastResults$ = this.store.select(selectLastResultsSelector);
+    this.faceItData$ = this.store.select(selectFaceItDataSelector);   
   }
 
 }

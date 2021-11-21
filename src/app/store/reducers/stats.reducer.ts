@@ -1,50 +1,27 @@
-import { isNumber } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { Action, createReducer, on } from '@ngrx/store';
-import { FaceitResponse } from 'src/app/models/faceit-response';
-import { PlayerDetails } from 'src/app/models/player-details';
-import { PlayerMatches } from 'src/app/models/player-matches';
-import { PlayerStatsPerGame } from 'src/app/models/player-stats-per-game';
-import { getBasicStatsSuccceeded, getEloDiffSucceeded, getPlayerDetailsSucceeded, getPlayerMatchesSucceeded, getPlayerStatsSucceeded } from '../actions/stats.actions';
+import { FaceItStatsResponse } from 'src/app/models/face-it-stats-response';
+import { LastResult } from 'src/app/models/last-result';
+import { getBasicStatsSuccceeded } from '../actions/stats.actions';
 import { StatsState } from '../state/stats-state';
 
 export const statsFeatureKey = "stats";
 
 const intitialState: StatsState = {
-  eloDiff: 0,
-  playerDetails: {} as PlayerDetails,
-  playerMatches: {} as PlayerMatches,
-  playerStatsPerGame: {} as PlayerStatsPerGame,
-  basic: { elo: 0, lvl: 1, todayEloDiff: "0", stats: {}, latestMatches: [], latestMatchesTrend: { simple: String(), extended: String()} } as FaceitResponse
+  faceItData: {
+    playerId: String(),
+    elo: 0,
+    level: 1,
+    eloDiff: 0,
+    isEloCalculating: false,
+    lastResults: [] as LastResult[]
+  } as FaceItStatsResponse
 };
 
 export const reducer = createReducer(
   intitialState,
-  on(getPlayerDetailsSucceeded, (state, action) => ({
-    ...state,
-    playerDetails: action.playerDetails
-  })),
-  on(getPlayerStatsSucceeded, (state, action) => ({
-    ...state,
-    playerStatsPerGame: action.playerStats
-  })),
-  on(getPlayerMatchesSucceeded, (state, action) => ({
-    ...state,
-    playerMatches: action.matches
-  })),
-  on(getEloDiffSucceeded, (state, action) => ({
-    ...state,
-    eloDiff: action.eloDiff
-  })),
   on(getBasicStatsSuccceeded, (state, action) => ({
     ...state,
-    basic: {
-        elo: action.response.elo,
-        lvl: action.response.lvl,
-        todayEloDiff: !action.response.todayEloDiff.includes('NaN') ? action.response.todayEloDiff : state.basic.todayEloDiff,
-        stats: action.response.stats,
-        latestMatches: action.response.latestMatches,
-        latestMatchesTrend: action.response.latestMatchesTrend
-      }
+    faceItData: action.response
   }))
 );
 

@@ -11,27 +11,27 @@
     >
         <ng-template ngbSlide>
             <div class="d-flex justify-content-center align-items-center text-shadow">
-                <svg-icon *ngIf="elo.level"  [src]="levelIcon" [applyClass]="true"
+                <svg-icon [src]="levelIcon" [applyClass]="true"
                     [svgStyle]="{'width.px':40,'fill':'rgb(150,50,255)','padding.px':1,'margin.px':3 }">></svg-icon>
-                <h1 style="margin-bottom: 0; margin-left: 5px; color: lightgray; font-family: 'Nunito';">{{elo.elo}} ELO</h1>
+                <h1 style="margin-bottom: 0; margin-left: 5px; color: lightgray; font-family: 'Nunito';">{{data.elo}} ELO</h1>
             </div>
         </ng-template>
         <ng-template ngbSlide>
             <div class="d-flex justify-content-center align-items-center text-shadow" style="padding-top: 7px; padding-bottom: 7px;">
                 <h1 style="margin-bottom: 0; margin-left: 5px; color: lightgray; font-family: 'Nunito';">ELO DZIŚ</h1>
-                <mat-icon  [ngClass]="fontColor" style="margin-bottom: 0; margin-left: 5px;" *ngIf="eloDiffNumber > 0">trending_up</mat-icon>
-                <mat-icon  [ngClass]="fontColor" style="margin-bottom: 0; margin-left: 5px;" *ngIf="eloDiffNumber === 0">trending_flat</mat-icon>
-                <mat-icon  [ngClass]="fontColor" style="margin-bottom: 0; margin-left: 5px;" *ngIf="eloDiffNumber < 0">trending_down</mat-icon>
-                <h1 style="font-family: 'Nunito';" [ngClass]="fontColor" style="margin-bottom: 0; margin-left: 3px;">{{ eloDiffNumber }}</h1>
+                <mat-icon  [ngClass]="fontColor" style="margin-bottom: 0; margin-left: 5px;" *ngIf="data.eloDiff > 0">trending_up</mat-icon>
+                <mat-icon  [ngClass]="fontColor" style="margin-bottom: 0; margin-left: 5px;" *ngIf="data.eloDiff === 0">trending_flat</mat-icon>
+                <mat-icon  [ngClass]="fontColor" style="margin-bottom: 0; margin-left: 5px;" *ngIf="data.eloDiff < 0">trending_down</mat-icon>
+                <h1 style="font-family: 'Nunito';" [ngClass]="fontColor" style="margin-bottom: 0; margin-left: 3px;">{{ data.eloDiff }}</h1>
             </div>
         </ng-template>
         <ng-template ngbSlide>
             <div class="d-flex justify-content-center align-items-center text-shadow-2" style="padding-top: 7px; padding-bottom: 7px;">
-                <h1 *ngFor="let convertedResult of convertedResults; let i = index" style="margin-bottom: 0; margin-left: 5px; font-size: 1.2rem;"
-                    [ngClass]="{'font-green': convertedResult.result.includes('W'),'font-red': convertedResult.result.includes('L')}">
-                     {{ convertedResult.result }}{{ !convertedResult.elo.includes('NaN') ? ' ' + convertedResult.elo : '' }}
-                     <mat-icon *ngIf="convertedResult.elo.includes('NaN')" style="margin-bottom: 4px; margin-left: 5px;">repeat</mat-icon>
-                     <span *ngIf="i+1 !== convertedResults.length" style="color: lightgray; margin-bottom: 0;"> | </span>
+                <h1 *ngFor="let lastResult of data.lastResults; let i = index" style="margin-bottom: 0; margin-left: 5px; font-size: 1.2rem;"
+                    [ngClass]="{'font-green': lastResult.win,'font-red': !lastResult.win}">
+                     {{ lastResult.win ? 'W' : 'L' }}{{ !lastResult.isEloCalculating ? ' ' + lastResult.elo : '' }}
+                     <mat-icon *ngIf="lastResult.isEloCalculating" style="margin-bottom: 4px; margin-left: 5px;">repeat</mat-icon>
+                     <span *ngIf="i+1 !== data.lastResults.length" style="color: lightgray; margin-bottom: 0;"> | </span>
                 </h1>
             </div>
         </ng-template>
