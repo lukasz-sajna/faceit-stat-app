@@ -32,7 +32,6 @@ export class SignalRService implements OnDestroy {
     this.store.select(selectFaceItDataSelector).pipe(
       untilDestroyed(this),
       tap((data) => {
-        console.log(data);
         this.playerId = data.playerId;
       })
     ).subscribe();
@@ -61,19 +60,16 @@ export class SignalRService implements OnDestroy {
 
   private registerSignalEvents(): void {
     this.hubConnection.on(SignalREvents.MatchObjectCreated, (playerId: string) => {
-      console.log(this.playerId, playerId, this.playerId === playerId)
       if(this.playerId === playerId) {
         this.store.dispatch(getBasicStats({nickname: this.routeParams.name}))
       }
     });
     this.hubConnection.on(SignalREvents.MatchStatusAborted, (playerId: string) => {
-      console.log(this.playerId, playerId, this.playerId === playerId)
       if(this.playerId === playerId) {
       this.store.dispatch(getBasicStats({nickname: this.routeParams.name}))
       }
     });
     this.hubConnection.on(SignalREvents.MatchStatusCancelled, (playerId: string) => {
-      console.log(this.playerId, playerId, this.playerId === playerId)
       if(this.playerId === playerId) {
       this.store.dispatch(getBasicStats({nickname: this.routeParams.name}))
       }
@@ -84,7 +80,6 @@ export class SignalRService implements OnDestroy {
       }
     });
     this.hubConnection.on(SignalREvents.MatchStatusFinished, (playerId: string) => {
-      console.log(this.playerId, playerId, this.playerId === playerId)
       if(this.playerId === playerId) {
       this.store.dispatch(getBasicStats({nickname: this.routeParams.name}))
       }
