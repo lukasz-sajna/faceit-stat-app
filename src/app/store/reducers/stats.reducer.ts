@@ -21,7 +21,14 @@ export const reducer = createReducer(
   intitialState,
   on(getBasicStatsSuccceeded, (state, action) => ({
     ...state,
-    faceItData: action.response
+    faceItData: {
+      playerId: action.response.playerId,
+      elo: action.response.elo,
+      level: action.response.level,
+      eloDiff: !action.response.isEloCalculating ? action.response.eloDiff : state.faceItData.eloDiff,
+      isEloCalculating: action.response.isEloCalculating,
+      lastResults: action.response.lastResults
+    }
   }))
 );
 
