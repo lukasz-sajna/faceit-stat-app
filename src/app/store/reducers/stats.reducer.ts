@@ -1,7 +1,8 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { FaceItStatsResponse } from 'src/app/models/face-it-stats-response';
 import { LastResult } from 'src/app/models/last-result';
-import { getBasicStatsSuccceeded } from '../actions/stats.actions';
+import { NotificationData } from 'src/app/models/notification-data';
+import { getBasicStatsSuccceeded, showNotification } from '../actions/stats.actions';
 import { StatsState } from '../state/stats-state';
 
 export const statsFeatureKey = "stats";
@@ -14,7 +15,8 @@ const intitialState: StatsState = {
     eloDiff: 0,
     isEloCalculating: false,
     lastResults: [] as LastResult[]
-  } as FaceItStatsResponse
+  } as FaceItStatsResponse,
+  notification: {} as NotificationData
 };
 
 export const reducer = createReducer(
@@ -29,6 +31,10 @@ export const reducer = createReducer(
       isEloCalculating: action.response.isEloCalculating,
       lastResults: action.response.lastResults
     }
+  })),
+  on(showNotification, (state, action) => ({
+    ...state,
+    notification: action.notificationData
   }))
 );
 

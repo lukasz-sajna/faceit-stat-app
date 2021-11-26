@@ -18,3 +18,5 @@ export const GET_ELO_DIFF_SUCCEEDED = '[Stats Effect] Get_Elo_Diff_Succeeded';
 
 export const GET_BASIC_STATS = '[Widget Component] Get_Basic_Stats';
 export const GET_BASIC_STATS_SUCCEEDED = '[Stats Effect] Get_Basic_Stats_Succeeded';
+
+export const SHOW_NOTIFICATION = '[Notifications Component] Show_Notifications';

@@ -16,7 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EloCarouselCardComponent } from './components/elo-carousel-card/elo-carousel-card.component';
 import { EloCarouselComponent } from './containers/elo-carousel/elo-carousel.component';
-import { API_KEY, API_URL, BASIC_API_URL, FACEIT_STATS_HUB, LOCAL_API_URL } from './injection-tokens';
+import { API_KEY, API_URL, BASIC_API_URL, FACEIT_STATS_HUB, LOCAL_API_URL, NOTIFICATIONS_HUB } from './injection-tokens';
 import { AuthHeaderInterceptor } from './interceptors/auth-header.interceptor';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { WidgetComponent } from './pages/widget/widget.component';
@@ -24,6 +24,8 @@ import { ResultPipe } from './pipes/result.pipe';
 import { StatsEffects } from './store/effects/stats.effects';
 import { metaReducers, reducers } from './store/reducers/combine-reducers';
 import { statsFeatureKey, statsReducer } from './store/reducers/stats.reducer';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -33,7 +35,8 @@ import { statsFeatureKey, statsReducer } from './store/reducers/stats.reducer';
     WidgetComponent,
     ResultPipe,
     EloCarouselCardComponent,
-    EloCarouselComponent
+    EloCarouselComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,11 @@ import { statsFeatureKey, statsReducer } from './store/reducers/stats.reducer';
     HttpClientModule,
     NgbCarouselModule,
     AngularSvgIconModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-top-full-width',
+      progressBar: true
+    }),
     StoreModule.forRoot(reducers, {
       metaReducers,
       runtimeChecks: {
@@ -64,6 +72,7 @@ import { statsFeatureKey, statsReducer } from './store/reducers/stats.reducer';
     {provide: API_KEY, useValue: environment.apiKey},
     {provide: BASIC_API_URL, useValue: environment.basicApiUrl},
     {provide: FACEIT_STATS_HUB, useValue: environment.faceitStatsHub},
+    {provide: NOTIFICATIONS_HUB, useValue: environment.notificationsHub},
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthHeaderInterceptor,

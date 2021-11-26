@@ -11,3 +11,10 @@ export const selectFaceItDataSelector = createSelector(
     }
 );
 
+export const selectNotificationData = createSelector(
+    statsFeatureState,
+    (stats) => {
+        return stats.notification;
+    }
+);
+
