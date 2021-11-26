@@ -20,7 +20,7 @@ export class NotificationsComponent implements AfterViewInit {
     this.store.select(selectNotificationData).pipe(
       filter(notification => !!notification.message && notification.message.length > 0),
       tap(notification => this.toastr.success(        
-        `${notification.message} at ${new Date(notification.date).toLocaleDateString()} ${new Date(notification.date).toLocaleTimeString()} `
+        `${notification.message} at ${new Date(notification.date).toLocaleDateString('pl-PL', {year: 'numeric', month: 'numeric', day: 'numeric'})} ${new Date(notification.date).toLocaleTimeString('pl-PL', {hour: 'numeric', minute: 'numeric', second: 'numeric'})} `
         ))
     ).subscribe()
   }
