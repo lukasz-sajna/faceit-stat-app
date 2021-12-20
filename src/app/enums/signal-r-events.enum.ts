@@ -5,5 +5,6 @@ export enum SignalREvents {
     MatchStatusConfiguring = 'match_status_configuring',
     MatchStatusFinished = 'match_status_finished',
     MatchStatusReady = 'match_status_ready',
+    ResetStats = 'reset_stats',
     NotificationEvent = 'notification'
 }

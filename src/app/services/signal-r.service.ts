@@ -109,6 +109,11 @@ export class SignalRService implements OnDestroy {
       this.store.dispatch(getBasicStats({nickname: this.routeParams.name}))
       }
     });
+    this.faceItStatsHubConnection.on(SignalREvents.ResetStats, (playerId: string) => {
+      if(playerId.length === 0) {
+      this.store.dispatch(getBasicStats({nickname: this.routeParams.name}))
+      }
+    });
   }
 
   private registerNotificationsSignalEvents(): void {
