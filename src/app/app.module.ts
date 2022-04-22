@@ -26,6 +26,7 @@ import { metaReducers, reducers } from './store/reducers/combine-reducers';
 import { statsFeatureKey, statsReducer } from './store/reducers/stats.reducer';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
 import { ToastrModule } from 'ngx-toastr';
+import { ChallangeComponent } from './pages/challange/challange.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { ToastrModule } from 'ngx-toastr';
     ResultPipe,
     EloCarouselCardComponent,
     EloCarouselComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    ChallangeComponent
   ],
   imports: [
     BrowserModule,
@@ -67,12 +69,12 @@ import { ToastrModule } from 'ngx-toastr';
     NgbModule,
   ],
   providers: [
-    {provide: API_URL, useValue: environment.apiUrl},
-    {provide: LOCAL_API_URL, useValue: environment.localApiUrl},
-    {provide: API_KEY, useValue: environment.apiKey},
-    {provide: BASIC_API_URL, useValue: environment.basicApiUrl},
-    {provide: FACEIT_STATS_HUB, useValue: environment.faceitStatsHub},
-    {provide: NOTIFICATIONS_HUB, useValue: environment.notificationsHub},
+    { provide: API_URL, useValue: environment.apiUrl },
+    { provide: LOCAL_API_URL, useValue: environment.localApiUrl },
+    { provide: API_KEY, useValue: environment.apiKey },
+    { provide: BASIC_API_URL, useValue: environment.basicApiUrl },
+    { provide: FACEIT_STATS_HUB, useValue: environment.faceitStatsHub },
+    { provide: NOTIFICATIONS_HUB, useValue: environment.notificationsHub },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthHeaderInterceptor,
