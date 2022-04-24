@@ -4,5 +4,6 @@ import { NotificationData } from 'src/app/models/notification-data';
 
 export interface StatsState {
     faceItData: FaceItStatsResponse;
-    notification: NotificationData
+    notification: NotificationData;
+    challangeData: ChallangeStats;
 }

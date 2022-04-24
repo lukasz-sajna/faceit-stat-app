@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_URL, BASIC_API_URL } from '../injection-tokens';
+import { ChallangeStats } from '../models/challange-stats';
 import { FaceItStatsResponse } from '../models/face-it-stats-response';
 
 @Injectable({
@@ -14,5 +15,9 @@ export class FaceitApiService {
 
   public GetBasicInfo(nickname: string): Observable<FaceItStatsResponse> {
     return this.http.get<FaceItStatsResponse>(`${this.basicApiUrl}/Stats/GetStats?nickname=${nickname}`);
+  }
+
+  public getChallangeInfo(): Observable<ChallangeStats> {
+    return this.http.get<ChallangeStats>(`${this.basicApiUrl}/challange`);
   }
 }

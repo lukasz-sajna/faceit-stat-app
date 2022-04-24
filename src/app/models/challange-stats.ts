@@ -1,5 +1,5 @@
 export interface ChallangeStats {
-    rankNumber: number;
+    rank: number;
     wins: number;
     draws: number;
     loses: number;

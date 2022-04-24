@@ -6,8 +6,9 @@ import { Store } from '@ngrx/store';
 import { tap } from 'rxjs/operators';
 import { SignalREvents } from '../enums/signal-r-events.enum';
 import { FACEIT_STATS_HUB, NOTIFICATIONS_HUB } from '../injection-tokens';
+import { ChallangeStats } from '../models/challange-stats';
 import { NotificationData } from '../models/notification-data';
-import { getBasicStats, showNotification } from '../store/actions/stats.actions';
+import { getBasicStats, setChallangeData, showNotification } from '../store/actions/stats.actions';
 import { selectRouteParamsSelector } from '../store/selectors/global-state.selectors';
 import { selectFaceItDataSelector } from '../store/selectors/stats.selector';
 import { GlobalState } from '../store/state/global-state';
@@ -28,11 +29,11 @@ export class SignalRService implements OnDestroy {
     private store: Store<GlobalState>) {
 
     this.store.select(selectRouteParamsSelector).pipe(
-        untilDestroyed(this),
-        tap((routeParams) => {
-          this.routeParams = routeParams;
-        })
-      ).subscribe()
+      untilDestroyed(this),
+      tap((routeParams) => {
+        this.routeParams = routeParams;
+      })
+    ).subscribe()
 
     this.store.select(selectFaceItDataSelector).pipe(
       untilDestroyed(this),
@@ -64,8 +65,8 @@ export class SignalRService implements OnDestroy {
         setTimeout(() => {
           this.startConnection();
         }, 3000);
-      });    
-    
+      });
+
     this.notificationsHubConnection
       .start()
       .then(() => {
@@ -80,45 +81,49 @@ export class SignalRService implements OnDestroy {
 
   private registerFaceItStatsSignalEvents(): void {
     this.faceItStatsHubConnection.on(SignalREvents.MatchObjectCreated, (playerId: string) => {
-      if(this.playerId === playerId) {
-        this.store.dispatch(getBasicStats({nickname: this.routeParams.name}))
+      if (this.playerId === playerId) {
+        this.store.dispatch(getBasicStats({ nickname: this.routeParams.name }))
       }
     });
     this.faceItStatsHubConnection.on(SignalREvents.MatchStatusAborted, (playerId: string) => {
-      if(this.playerId === playerId) {
-      this.store.dispatch(getBasicStats({nickname: this.routeParams.name}))
+      if (this.playerId === playerId) {
+        this.store.dispatch(getBasicStats({ nickname: this.routeParams.name }))
       }
     });
     this.faceItStatsHubConnection.on(SignalREvents.MatchStatusCancelled, (playerId: string) => {
-      if(this.playerId === playerId) {
-      this.store.dispatch(getBasicStats({nickname: this.routeParams.name}))
+      if (this.playerId === playerId) {
+        this.store.dispatch(getBasicStats({ nickname: this.routeParams.name }))
       }
     });
     this.faceItStatsHubConnection.on(SignalREvents.MatchStatusConfiguring, (playerId: string) => {
-      if(this.playerId === playerId) {
-      this.store.dispatch(getBasicStats({nickname: this.routeParams.name}))
+      if (this.playerId === playerId) {
+        this.store.dispatch(getBasicStats({ nickname: this.routeParams.name }))
       }
     });
     this.faceItStatsHubConnection.on(SignalREvents.MatchStatusFinished, (playerId: string) => {
-      if(this.playerId === playerId) {
-      this.store.dispatch(getBasicStats({nickname: this.routeParams.name}))
+      if (this.playerId === playerId) {
+        this.store.dispatch(getBasicStats({ nickname: this.routeParams.name }))
       }
     });
     this.faceItStatsHubConnection.on(SignalREvents.MatchStatusReady, (playerId: string) => {
-      if(this.playerId === playerId) {
-      this.store.dispatch(getBasicStats({nickname: this.routeParams.name}))
+      if (this.playerId === playerId) {
+        this.store.dispatch(getBasicStats({ nickname: this.routeParams.name }))
       }
     });
     this.faceItStatsHubConnection.on(SignalREvents.ResetStats, (playerId: string) => {
-      if(playerId.length === 0) {
-      this.store.dispatch(getBasicStats({nickname: this.routeParams.name}))
+      if (playerId.length === 0) {
+        this.store.dispatch(getBasicStats({ nickname: this.routeParams.name }))
       }
     });
   }
 
   private registerNotificationsSignalEvents(): void {
     this.notificationsHubConnection.on(SignalREvents.NotificationEvent, (notificationData: NotificationData) => {
-        this.store.dispatch(showNotification({notificationData}))
+      this.store.dispatch(showNotification({ notificationData }))
+    });
+    this.notificationsHubConnection.on(SignalREvents.ChallangeStatsEvent, (challangeData: ChallangeStats) => {
+      this.store.dispatch(setChallangeData({ data: challangeData }));
+      console.log(challangeData);
     });
   }
 }

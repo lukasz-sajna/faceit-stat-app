@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { delay, filter, map, switchMap, withLatestFrom } from 'rxjs/operators';
 import { FaceitApiService } from 'src/app/services/faceit-api.service';
-import { getBasicStats, getBasicStatsSuccceeded } from '../actions/stats.actions';
+import { getBasicStats, getBasicStatsSuccceeded, getChallangeData, setChallangeData } from '../actions/stats.actions';
 import { selectRouteParamsSelector } from '../selectors/global-state.selectors';
 
 @Injectable()
@@ -27,8 +27,17 @@ export class StatsEffects {
             filter(([action]) => action.response.isEloCalculating),
             delay(10000),
             switchMap(([_, route]) => [
-                getBasicStats({nickname: route.name})
+                getBasicStats({ nickname: route.name })
             ])
+        )
+    );
+
+    public getChallangeData$: Observable<any> = createEffect(() =>
+        this.actions$.pipe(
+            ofType(getChallangeData),
+            switchMap(() => this.faceitApi.getChallangeInfo().pipe(
+                map((response) => setChallangeData({ data: response }))
+            ))
         )
     );
 }

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { selectQueryParamsSelector } from 'src/app/store/selectors/global-state.selectors';
+import { ChallangeStats } from 'src/app/models/challange-stats';
+import { getChallangeData } from 'src/app/store/actions/stats.actions';
+import { selectChallangeData } from 'src/app/store/selectors/stats.selector';
 
 @UntilDestroy()
 @Component({
@@ -11,21 +14,17 @@ import { selectQueryParamsSelector } from 'src/app/store/selectors/global-state.
   styleUrls: ['./challange.component.css']
 })
 export class ChallangeComponent implements OnInit {
-  public challange: any;
+  public challangeData$: Observable<ChallangeStats> = new Observable();
 
   constructor(private store: Store<any>) {
-    this.store.select(selectQueryParamsSelector).pipe(
-      untilDestroyed(this),
-      tap((queryParams) => {
-        this.challange = queryParams;
-      })
-    ).subscribe();
+    this.challangeData$ = this.store.select(selectChallangeData);
   }
   ngOnInit(): void {
+    this.store.dispatch(getChallangeData());
   }
 
-  public get rankImage(): string {
-    return `/assets/ranks/matchmaking${this.challange.rank}.png`
+  public getRankImage(rank: number): string {
+    return `/assets/ranks/matchmaking${rank}.png`
   }
 
 }

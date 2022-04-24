@@ -20,3 +20,6 @@ export const GET_BASIC_STATS = '[Widget Component] Get_Basic_Stats';
 export const GET_BASIC_STATS_SUCCEEDED = '[Stats Effect] Get_Basic_Stats_Succeeded';
 
 export const SHOW_NOTIFICATION = '[Notifications Component] Show_Notifications';
+
+export const SET_CHALLANGE_DATA = '[Challange Component] Set_Challange_Data';
+export const GET_CHALLANGE_DATA = '[Challange Component] Get_Challange_Data';

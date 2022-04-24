@@ -17,12 +17,12 @@ export class WidgetComponent {
   public routeParams: Params;
   public widget: typeof Widget = Widget;
 
-  constructor(private store: Store<any>) { 
+  constructor(private store: Store<any>) {
     this.store.select(selectRouteParamsSelector).pipe(
       untilDestroyed(this),
       tap((routeParams) => {
         this.routeParams = routeParams;
-        this.store.dispatch(getBasicStats({nickname: routeParams.name}));
+        this.store.dispatch(getBasicStats({ nickname: routeParams.name }));
       })
     ).subscribe();
   }

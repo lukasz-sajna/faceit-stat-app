@@ -2,7 +2,7 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { FaceItStatsResponse } from 'src/app/models/face-it-stats-response';
 import { LastResult } from 'src/app/models/last-result';
 import { NotificationData } from 'src/app/models/notification-data';
-import { getBasicStatsSuccceeded, showNotification } from '../actions/stats.actions';
+import { getBasicStatsSuccceeded, setChallangeData, showNotification } from '../actions/stats.actions';
 import { StatsState } from '../state/stats-state';
 
 export const statsFeatureKey = "stats";
@@ -16,7 +16,8 @@ const intitialState: StatsState = {
     isEloCalculating: false,
     lastResults: [] as LastResult[]
   } as FaceItStatsResponse,
-  notification: {} as NotificationData
+  notification: {} as NotificationData,
+  challangeData: { rank: 0, wins: 0, draws: 0, loses: 0 }
 };
 
 export const reducer = createReducer(
@@ -35,6 +36,10 @@ export const reducer = createReducer(
   on(showNotification, (state, action) => ({
     ...state,
     notification: action.notificationData
+  })),
+  on(setChallangeData, (state, action) => ({
+    ...state,
+    challangeData: action.data
   }))
 );
 

@@ -18,3 +18,10 @@ export const selectNotificationData = createSelector(
     }
 );
 
+export const selectChallangeData = createSelector(
+    statsFeatureState,
+    (stats) => {
+        return stats.challangeData;
+    }
+);
+

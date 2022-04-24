@@ -9,7 +9,8 @@ export const environment = {
   localApiUrl: 'http://localhost:8888/api',
   basicApiUrl: 'https://localhost:44384/api',
   faceitStatsHub: 'https://localhost:44384/hubs/faceitStats',
-  notificationsHub: 'https://localhost:44384/hubs/notifications'
+  notificationsHub: 'https://localhost:44384/hubs/notifications',
+  challangeStatsHub: 'https://localhost:44384/hubs/challangeStats'
 };
 
 /*
