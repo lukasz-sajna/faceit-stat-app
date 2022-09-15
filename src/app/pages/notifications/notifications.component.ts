@@ -36,7 +36,7 @@ export class NotificationsComponent implements AfterViewInit {
   }
 
   public ngAfterViewInit(): void {
-    this.renderer.setStyle(this.elementRef.nativeElement.ownerDocument.body, 'backgroundColor', '#3A393A');
+    this.renderer.setStyle(this.elementRef.nativeElement.ownerDocument.body, 'backgroundColor', '#1f212a');
   }
 
 }
