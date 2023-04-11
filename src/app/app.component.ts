@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { SignalRService } from './services/signal-r.service';
 
 @Component({
@@ -6,13 +7,14 @@ import { SignalRService } from './services/signal-r.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent  {
+export class AppComponent {
 
   title = 'faceit-stats';
 
   constructor(private signalRService: SignalRService) {
     this.signalRService.buildConnection();
     this.signalRService.startConnection();
+    this.title = environment.substituteCheck;
   }
 }
 

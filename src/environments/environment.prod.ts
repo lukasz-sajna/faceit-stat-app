@@ -6,5 +6,6 @@ export const environment = {
   basicApiUrl: 'https://faceit-stats.azurewebsites.net/api',
   faceitStatsHub: 'https://faceit-stats.azurewebsites.net/hubs/faceitStats',
   notificationsHub: 'https://faceit-stats.azurewebsites.net/hubs/notifications',
-  challangeStatsHub: 'https://faceit-stats.azurewebsites.net/hubs/challangeStats'
+  challangeStatsHub: 'https://faceit-stats.azurewebsites.net/hubs/challangeStats',
+  substituteCheck: '#{test.substituteCheck}#'
 };

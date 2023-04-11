@@ -10,7 +10,8 @@ export const environment = {
   basicApiUrl: 'https://localhost:44384/api',
   faceitStatsHub: 'https://localhost:44384/hubs/faceitStats',
   notificationsHub: 'https://localhost:44384/hubs/notifications',
-  challangeStatsHub: 'https://localhost:44384/hubs/challangeStats'
+  challangeStatsHub: 'https://localhost:44384/hubs/challangeStats',
+  substituteCheck: '#{test.substituteCheck}#'
 };
 
 /*
