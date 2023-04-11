@@ -53,3 +53,5 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_703D201BF9CF4068900A2F68659D7212 }}
           package: .
+        env:
+          test.substituteCheck: no-idea
