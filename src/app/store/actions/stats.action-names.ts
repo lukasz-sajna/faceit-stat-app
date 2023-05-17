@@ -23,3 +23,7 @@ export const SHOW_NOTIFICATION = '[Notifications Component] Show_Notifications';
 
 export const SET_CHALLANGE_DATA = '[Challange Component] Set_Challange_Data';
 export const GET_CHALLANGE_DATA = '[Challange Component] Get_Challange_Data';
+
+
+export const GET_ESPORTAL_STATS = '[Esportal Widget Component] Get_Esportal_Stats';
+export const GET_ESPORTAL_STATS_SUCCEEDED = '[Stats Effect] Get_Esportal_Stats_Succeeded';

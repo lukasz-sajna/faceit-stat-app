@@ -1,8 +1,9 @@
 import { Action, createReducer, on } from '@ngrx/store';
+import { EsportalStats } from 'src/app/models/esportal-stats';
 import { FaceItStatsResponse } from 'src/app/models/face-it-stats-response';
 import { LastResult } from 'src/app/models/last-result';
 import { NotificationData } from 'src/app/models/notification-data';
-import { getBasicStatsSuccceeded, setChallangeData, showNotification } from '../actions/stats.actions';
+import { getBasicStatsSuccceeded, getEsportalStatsSuccceeded, setChallangeData, showNotification } from '../actions/stats.actions';
 import { StatsState } from '../state/stats-state';
 
 export const statsFeatureKey = "stats";
@@ -17,6 +18,7 @@ const intitialState: StatsState = {
     lastResults: [] as LastResult[]
   } as FaceItStatsResponse,
   notification: {} as NotificationData,
+  esportalData: {} as EsportalStats,
   challangeData: { rank: 0, wins: 0, draws: 0, loses: 0 }
 };
 
@@ -40,7 +42,11 @@ export const reducer = createReducer(
   on(setChallangeData, (state, action) => ({
     ...state,
     challangeData: action.data
-  }))
+  })),
+  on(getEsportalStatsSuccceeded, (state, action) => ({
+    ...state,
+    esportalData: action.response
+  })),
 );
 
 export function statsReducer(

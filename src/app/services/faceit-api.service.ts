@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_URL, BASIC_API_URL } from '../injection-tokens';
 import { ChallangeStats } from '../models/challange-stats';
+import { EsportalStats } from '../models/esportal-stats';
 import { FaceItStatsResponse } from '../models/face-it-stats-response';
 
 @Injectable({
@@ -19,5 +20,9 @@ export class FaceitApiService {
 
   public getChallangeInfo(): Observable<ChallangeStats> {
     return this.http.get<ChallangeStats>(`${this.basicApiUrl}/challange`);
+  }
+
+  public GetEsportalInfo(nickname: string): Observable<EsportalStats> {
+    return this.http.get<EsportalStats>(`${this.basicApiUrl}/Stats/GetEsportalStats?nickname=${nickname}`);
   }
 }

@@ -25,3 +25,10 @@ export const selectChallangeData = createSelector(
     }
 );
 
+export const selectEsportalDataSelector = createSelector(
+    statsFeatureState,
+    (stats) => {
+        return stats.esportalData;
+    }
+);
+

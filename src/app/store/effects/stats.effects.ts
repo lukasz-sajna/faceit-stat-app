@@ -4,8 +4,9 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { delay, filter, map, switchMap, withLatestFrom } from 'rxjs/operators';
 import { FaceitApiService } from 'src/app/services/faceit-api.service';
-import { getBasicStats, getBasicStatsSuccceeded, getChallangeData, setChallangeData } from '../actions/stats.actions';
+import { getBasicStats, getBasicStatsSuccceeded, getChallangeData, getEsportalStats, getEsportalStatsSuccceeded, setChallangeData } from '../actions/stats.actions';
 import { selectRouteParamsSelector } from '../selectors/global-state.selectors';
+import { ChallangeStats } from 'src/app/models/challange-stats';
 
 @Injectable()
 export class StatsEffects {
@@ -36,7 +37,16 @@ export class StatsEffects {
         this.actions$.pipe(
             ofType(getChallangeData),
             switchMap(() => this.faceitApi.getChallangeInfo().pipe(
-                map((response) => setChallangeData({ data: response }))
+                map((response: ChallangeStats) => setChallangeData({ data: response }))
+            ))
+        )
+    );
+
+    public getEsportalStats$: Observable<any> = createEffect(() =>
+        this.actions$.pipe(
+            ofType(getEsportalStats),
+            switchMap(action => this.faceitApi.GetEsportalInfo(action.nickname).pipe(
+                map((response) => getEsportalStatsSuccceeded({ response }))
             ))
         )
     );
