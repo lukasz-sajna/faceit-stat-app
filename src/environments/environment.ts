@@ -4,14 +4,11 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://open.faceit.com/data/v4',
-  apiKey: '19981c39-26dc-43f8-8b08-e72bee3f824f',
   localApiUrl: 'http://localhost:8888/api',
   basicApiUrl: 'https://localhost:44384/api',
   faceitStatsHub: 'https://localhost:44384/hubs/faceitStats',
   notificationsHub: 'https://localhost:44384/hubs/notifications',
-  challangeStatsHub: 'https://localhost:44384/hubs/challangeStats',
-  substituteCheck: '#{test.substituteCheck}#'
+  challangeStatsHub: 'https://localhost:44384/hubs/challangeStats'
 };
 
 /*

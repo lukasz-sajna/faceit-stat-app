@@ -69,9 +69,7 @@ import { ChallangeComponent } from './pages/challange/challange.component';
     NgbModule,
   ],
   providers: [
-    { provide: API_URL, useValue: environment.apiUrl },
     { provide: LOCAL_API_URL, useValue: environment.localApiUrl },
-    { provide: API_KEY, useValue: environment.apiKey },
     { provide: BASIC_API_URL, useValue: environment.basicApiUrl },
     { provide: FACEIT_STATS_HUB, useValue: environment.faceitStatsHub },
     { provide: NOTIFICATIONS_HUB, useValue: environment.notificationsHub },
