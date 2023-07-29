@@ -1,3 +1,4 @@
+import { CurrentMatchElo } from './current-match-elo';
 import { LastResult } from './last-result';
 
 export interface FaceItStatsResponse {
@@ -7,4 +8,5 @@ export interface FaceItStatsResponse {
     eloDiff: number;
     isEloCalculating: boolean;
     lastResults: LastResult[];
+    currentMatchElo: CurrentMatchElo;
 }

@@ -4,6 +4,7 @@ import { LastResult } from 'src/app/models/last-result';
 import { NotificationData } from 'src/app/models/notification-data';
 import { getBasicStatsSuccceeded, setChallangeData, showNotification } from '../actions/stats.actions';
 import { StatsState } from '../state/stats-state';
+import { CurrentMatchElo } from 'src/app/models/current-match-elo';
 
 export const statsFeatureKey = "stats";
 
@@ -14,7 +15,8 @@ const intitialState: StatsState = {
     level: 1,
     eloDiff: 0,
     isEloCalculating: false,
-    lastResults: [] as LastResult[]
+    lastResults: [] as LastResult[],
+    currentMatchElo: { gain: 0, loss: 0 } as CurrentMatchElo
   } as FaceItStatsResponse,
   notification: {} as NotificationData,
   challangeData: { rank: 0, wins: 0, draws: 0, loses: 0 }
@@ -30,7 +32,8 @@ export const reducer = createReducer(
       level: action.response.level,
       eloDiff: !action.response.isEloCalculating ? action.response.eloDiff : state.faceItData.eloDiff,
       isEloCalculating: action.response.isEloCalculating,
-      lastResults: action.response.lastResults
+      lastResults: action.response.lastResults,
+      currentMatchElo: action.response.currentMatchElo
     }
   })),
   on(showNotification, (state, action) => ({

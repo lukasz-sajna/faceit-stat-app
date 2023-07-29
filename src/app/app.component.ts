@@ -14,7 +14,6 @@ export class AppComponent {
   constructor(private signalRService: SignalRService) {
     this.signalRService.buildConnection();
     this.signalRService.startConnection();
-    this.title = environment.substituteCheck;
   }
 }
 
