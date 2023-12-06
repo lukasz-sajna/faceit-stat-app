@@ -64,7 +64,7 @@ import { ChallangeComponent } from './pages/challange/challange.component';
     }),
     StoreModule.forFeature(statsFeatureKey, statsReducer),
     EffectsModule.forRoot([StatsEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production , connectInZone: true}),
     StoreRouterConnectingModule.forRoot({ routerState: RouterState.Minimal }),
     NgbModule,
   ],
