@@ -1,4 +1,4 @@
-<mat-card *ngIf="(challangeData$ | async) as challange" class="transparent shadow mx-2" style="margin-bottom: 7px; min-height: 78px;">
+<mat-card appearance="outlined" *ngIf="(challangeData$ | async) as challange" class="transparent shadow mx-2" style="margin-bottom: 7px; min-height: 78px;">
   <div class="d-flex justify-content-center align-items-center text-shadow">
   <img style="max-height: 45px" [src]="getRankImage(challange.rank)" alt="">
   <h1 class="font-green" style="margin-bottom: 0; margin-left: 10px;  font-family: 'Nunito';">W: {{challange.wins}} </h1>

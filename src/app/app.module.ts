@@ -1,7 +1,7 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
+import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -64,7 +64,7 @@ import { ChallangeComponent } from './pages/challange/challange.component';
     }),
     StoreModule.forFeature(statsFeatureKey, statsReducer),
     EffectsModule.forRoot([StatsEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production , connectInZone: true}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production, connectInZone: true }),
     StoreRouterConnectingModule.forRoot({ routerState: RouterState.Minimal }),
     NgbModule,
   ],
