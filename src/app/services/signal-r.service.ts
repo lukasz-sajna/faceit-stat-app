@@ -1,6 +1,6 @@
 import { Inject, Injectable, OnDestroy } from '@angular/core';
 import { Params } from '@angular/router';
-import * as signalR from '@aspnet/signalr';
+import * as signalR from '@Microsoft/signalr';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { tap } from 'rxjs/operators';
